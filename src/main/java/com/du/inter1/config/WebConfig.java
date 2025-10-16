@@ -14,6 +14,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor);
+        registry.addInterceptor(loginInterceptor)
+                .addPathPatterns("/posts/**") // 게시판 관련 URL에만 인터셉터 적용
+                .excludePathPatterns("/login", "/logout", "/register"); // 로그인, 로그아웃, 회원가입 제외
     }
 }
